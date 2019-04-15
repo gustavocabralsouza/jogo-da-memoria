@@ -35,6 +35,7 @@ body {
 .container-header h1 {
   font-family: 'Cute Font', cursive;
   text-align: center;
+  font-size: 42px;
 }
 
 .container-header .infor-header {
@@ -56,39 +57,59 @@ body {
   width: 100%;
   max-width: 520px;
   padding: 1em 0;
-  /* padding: 1em; */
-  /* align-items: center; */
 }
 
 .container-game .card {
-  width: 80px;
-  height: 80px;
-  background-color: #364e68;
-  border-radius: .5em;
-  margin: .2em;
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 3em;  */
-  /* display: inline-flex; */
-  /* margin: 1em;  */
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  margin: .2em;
+  transform-style: preserve-3d;
+  transition: all 0.8s ease;
 }
 
-.container-game .card span {
-  color: #fff;
-  opacity: 0;
+.container-game .card [class*="card-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.container-game .card.show-card {
-  background-color: #132238;
-}
-
-.container-game .card.show-card span {
+.container-game .card .card-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: .5em;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background: #ffc728;
   color: red;
-  opacity: 1;
 }
 
+.container-game .card .card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background: #132238;
+  text-align: center;
+  transform: rotateY(180deg);
+  color: #fff;
+}
+
+.container-game .card.show {
+  transform: rotateY(180deg);
+}
+ 
 /* responsive */
 @media only screen and (min-width: 452px) {
   .container-game .card {

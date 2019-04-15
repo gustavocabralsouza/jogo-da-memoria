@@ -3,11 +3,11 @@ jQuery(function () {
 });
 
 function main() {
-  const activeCards = '.container-game .card.show-card';
+  // const activeCards = '.container-game .card.show';
 
   $('.card').on('click', function () {
     showCard($(this));
   });
 
-  const showCard = (elem) => elem.toggleClass('show-card');
+  const showCard = (elem) => elem.toggleClass('show');
 }
