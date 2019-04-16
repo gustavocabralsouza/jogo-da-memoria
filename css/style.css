@@ -88,7 +88,7 @@ body {
   backface-visibility: hidden;
   overflow: hidden;
   background: #ffc728;
-  color: red;
+  color: red; 
 }
 
 .container-game .card .card-back {
