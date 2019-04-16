@@ -71,6 +71,10 @@ body {
   transition: all 0.8s ease;
 }
 
+.container-game .card:not(.show):hover {
+  cursor: pointer;
+}
+
 .container-game .card [class*="card-"] {
   display: flex;
   align-items: center;
@@ -88,7 +92,7 @@ body {
   backface-visibility: hidden;
   overflow: hidden;
   background: #ffc728;
-  color: red; 
+  color: red;
 }
 
 .container-game .card .card-back {
@@ -109,7 +113,7 @@ body {
 .container-game .card.show {
   transform: rotateY(180deg);
 }
- 
+
 /* responsive */
 @media only screen and (min-width: 452px) {
   .container-game .card {
