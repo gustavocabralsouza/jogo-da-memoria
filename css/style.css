@@ -38,13 +38,33 @@ body {
   font-size: 42px;
 }
 
-.container-header .infor-header {
-  background-color: orange;
+.container-header .infor-header {}
+
+.container-header .infor-header div {
+  padding: .5em;
+  text-align: center;
+}
+
+.container-header .infor-header .stars {
+  background-color: aquamarine;
+}
+
+.container-header .infor-header .moves {
+  background-color: #132238;
+}
+
+.container-header .infor-header .moves span:first-of-type {
+  background-color: #ffc728;
 }
 
 .container-header .infor-header a {
-  margin-left: 3em;
+  margin: 1em 0;
+  display: block;
+  background-color: blueviolet;
+  text-align: center;
 }
+
+
 
 /* game */
 .container-game {
