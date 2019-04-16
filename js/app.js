@@ -5,7 +5,7 @@ jQuery(function () {
 
 function building() {
   // let array = [1, 2, 3, 4, 5, 6, 7, 8];
-  let array = [1, 2, 3];
+  let array = [1, 2];
   array = embaralhar(array.concat(array));
 
   const div = array.map(function (num) {
@@ -70,8 +70,8 @@ function main() {
   const checkCards = (cards, activeCards) => {
     if ($(cards)[0].textContent === $(cards)[1].textContent) {
       $(activeCards).addClass('verified')
-       //count moves
-       countMoves();
+      //count moves
+      countMoves();
     } else {
       setTimeout(() => hideCards($(activeCards)), 800);
     }
@@ -79,14 +79,14 @@ function main() {
 
   const checkEnd = (t) => {
     // if ($('.verified').length === 16) {
-    if ($(activeCardsVerified).length === 6) {
-      alert('End Game!');
+    if ($(activeCardsVerified).length === 4) {
+      setTimeout(() => $('#modal-end-game').modal('show'), 500);
     }
   }
 
   const countMoves = () => {
-    const num = $(numMoves).text() || 0; 
-    $(numMoves).text(parseInt(num) + 1);    
+    const num = $(numMoves).text() || 0;
+    $(numMoves).text(parseInt(num) + 1);
   }
 
 }
