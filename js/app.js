@@ -3,12 +3,15 @@ jQuery(function () {
 });
 
 // variables
+const cards = '.card';
 const activeCards = '.card.show:not(.verified)';
 const activeCardsVerified = '.verified';
-const activeCardsValues = '.card.show:not(.verified) .card-back span';
+const activeCardsValues = '.card.show:not(.verified) .card-back span svg';
 const descMoves = '.moves span:first-of-type'
 const numMoves = '.moves span:last-of-type'
 const start = '.bk-start';
+
+// call functions
 function main() {
   $('.btn-start').on('click', function (e) {
     building();
@@ -19,7 +22,16 @@ function main() {
 
 // html building
 function building() {
-  let array = [1, 2, 3, 4, 5, 6, 7, 8];
+  let array = [
+    '<i class="fab fa-html5"></i>',
+    '<i class="fab fa-behance"></i>',
+    '<i class="fab fa-angular"></i>',
+    '<i class="fab fa-css3"></i>',
+    '<i class="fab fa-js"></i>',
+    '<i class="fab fa-git"></i>',
+    '<i class="fab fa-less"></i>',
+    '<i class="fab fa-dribbble"></i>'
+  ];
   array = embaralhar(array.concat(array));
 
   const div = array.map(function (num) {
@@ -38,12 +50,18 @@ function building() {
 
   $('.container-game').append(div);
 
+  for (let i = 0; i < 5; i++) {
+    $('.stars').append('<i class="far fa-star"></i>');
+  }
+
+  // log
+  console.log('built html');
 }
 
 // logic of the game
 function game() {
   $('.card').on('click', function (e) {
-    //validando clique
+    // validando clique
     if (e.currentTarget.className.indexOf('show') > -1) {
       return;
     }
@@ -53,16 +71,28 @@ function game() {
       hideCards($(activeCards));
     }
 
-    //exibir valor do card
+    // exibir valor do card
     showCard($(this));
 
-    //verificando valores
+    // verificando valores
     if ($(activeCards).length === 2) {
       checkCards(activeCardsValues, activeCards);
     }
 
-    //check fim do jogo
+    // check fim do jogo
     checkEnd(activeCards);
+  });
+
+  $('.btn-reload').on('click', function (e) {
+    // reset moves
+    $(numMoves).text('0');
+    $(descMoves).text('Movimentos:');
+
+    // reset cards
+    $(cards).removeClass('show').removeClass('verified');
+
+    // log
+    console.log('game restarted');
   });
 
   const showCard = (elem) => elem.toggleClass('show');
@@ -70,15 +100,15 @@ function game() {
   const hideCards = (elem) => {
     if (elem.length > 1) {
       elem.removeClass('show');
-      //count moves
+      // count moves
       countMoves();
     }
   }
 
   const checkCards = (cards, activeCards) => {
-    if ($(cards)[0].textContent === $(cards)[1].textContent) {
+    if ($(cards)[0].dataset.icon === $(cards)[1].dataset.icon) {
       $(activeCards).addClass('verified')
-      //count moves
+      // count moves
       countMoves();
     } else {
       setTimeout(() => hideCards($(activeCards)), 800);
@@ -96,9 +126,11 @@ function game() {
     $(numMoves).text(parseInt(num) + 1);
   }
 
+  // log
+  console.log('game started');
 }
 
-//shuffling array
+// shuffling array
 function embaralhar(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
   while (0 !== currentIndex) {
