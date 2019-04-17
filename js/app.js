@@ -1,11 +1,25 @@
 jQuery(function () {
-  building();
   main();
 });
 
+// variables
+const activeCards = '.card.show:not(.verified)';
+const activeCardsVerified = '.verified';
+const activeCardsValues = '.card.show:not(.verified) .card-back span';
+const descMoves = '.moves span:first-of-type'
+const numMoves = '.moves span:last-of-type'
+const start = '.bk-start';
+function main() {
+  $('.btn-start').on('click', function (e) {
+    building();
+    $(start).fadeOut("slow");
+    game();
+  });
+}
+
+// html building
 function building() {
-  // let array = [1, 2, 3, 4, 5, 6, 7, 8];
-  let array = [1, 2];
+  let array = [1, 2, 3, 4, 5, 6, 7, 8];
   array = embaralhar(array.concat(array));
 
   const div = array.map(function (num) {
@@ -26,14 +40,8 @@ function building() {
 
 }
 
-const activeCards = '.card.show:not(.verified)';
-const activeCardsVerified = '.verified';
-const activeCardsValues = '.card.show:not(.verified) .card-back span';
-
-const descMoves = '.moves span:first-of-type'
-const numMoves = '.moves span:last-of-type'
-
-function main() {
+// logic of the game
+function game() {
   $('.card').on('click', function (e) {
     //validando clique
     if (e.currentTarget.className.indexOf('show') > -1) {
@@ -78,8 +86,7 @@ function main() {
   }
 
   const checkEnd = (t) => {
-    // if ($('.verified').length === 16) {
-    if ($(activeCardsVerified).length === 4) {
+    if ($('.verified').length === 16) {
       setTimeout(() => $('#modal-end-game').modal('show'), 500);
     }
   }
@@ -91,6 +98,7 @@ function main() {
 
 }
 
+//shuffling array
 function embaralhar(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
   while (0 !== currentIndex) {
