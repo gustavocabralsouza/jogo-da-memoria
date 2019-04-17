@@ -15,6 +15,7 @@ const start = '.bk-start';
 function main() {
   $('.btn-start').on('click', function (e) {
     building();
+    $(this).fadeOut(0);
     $(start).fadeOut("slow");
     game();
   });
@@ -37,9 +38,7 @@ function building() {
   const div = array.map(function (num) {
     const html = `
     <div class="card">
-      <div class="card-front">
-        <span>front</span>
-      </div>
+      <div class="card-front"></div>
       <div class="card-back">
         <span>${num}</span>
       </div>

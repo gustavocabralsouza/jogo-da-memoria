@@ -18,6 +18,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Cute Font', cursive;
+  color: #33313b;
 }
 
 .main {
@@ -27,13 +28,13 @@ body {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background-color: #ebf0f6;
+  background-color: #dfe2e2;
   padding: 1em;
 }
 
 /* start */
 .bk-start {
-  background: #ececec;
+  background: #dfe2e2;
   position: absolute;
   top: 0;
   left: 0;
@@ -41,7 +42,7 @@ body {
   bottom: 0;
   z-index: 1;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -49,17 +50,18 @@ body {
 .container-header .infor-header .btn-reload {
   position: relative;
   width: 160px;
-  margin: 4em auto 0;
+  /* margin: 4em auto 0; */
+  margin: 0 auto;
   display: inline-block;
-  color: #ecf0f1;
   text-decoration: none;
   border-radius: 5px;
   border: solid 1px #e16262;
   background: #e16262;
   text-align: center;
   padding: 10px 12px 8px;
-
+  
   font-size: 30px;
+  color: #ffffff;
   text-transform: uppercase;
 
   -webkit-transition: all 0.1s;
@@ -139,12 +141,13 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  flex-flow: wrap;
-  background-color: #98ccd3;
+  flex-flow: wrap; 
   border-radius: .5em;
   width: 100%;
   max-width: 520px;
   padding: 1em 0;
+  background-color: #8BC6EC;
+  background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 }
 
 /* cards */
@@ -155,7 +158,7 @@ body {
   text-align: center;
   width: 64px;
   height: 64px;
-  margin: .2em;
+  margin: .25em;
   transform-style: preserve-3d;
   transition: all 0.8s ease;
 }
@@ -180,8 +183,7 @@ body {
   border-radius: .5em;
   backface-visibility: hidden;
   overflow: hidden;
-  background: #ffc728;
-  color: red;
+  background: #3c415e;
 }
 
 .container-game .card .card-back {
@@ -193,14 +195,15 @@ body {
   border-radius: 10px;
   backface-visibility: hidden;
   overflow: hidden;
-  background: #132238;
+  background: #ffcd3c;
   text-align: center;
-  transform: rotateY(180deg);
-  color: #fff;
+  transform: rotateY(180deg); 
 }
+
 .container-game .card .card-back span {
-  color: #fff;
   font-size: 32px;
+  color: #ffffff;
+  line-height: 0;
 }
 
 .container-game .card.show {
@@ -212,8 +215,9 @@ body {
 
   /* cards */
   .container-game .card {
-    width: 80px;
-    height: 80px;
+    width: 75px;
+    height: 75px;
+    margin: .3em;
   }
 
   /* stars */
@@ -226,17 +230,18 @@ body {
 
   /* cards */
   .container-game .card {
-    width: 100px;
-    height: 100px;
+    width: 92px;
+    height: 92px;
   }
 }
 
-@media only screen and (min-width: 552px) {
+@media only screen and (min-width: 530px) {
 
   /* cards */
   .container-game .card {
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
+    margin: .5em;
   }
 
   /* stars */
