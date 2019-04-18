@@ -1,5 +1,6 @@
 jQuery(function () {
   main();
+  $('.btn-start').click();
 });
 
 // variables
@@ -25,15 +26,16 @@ function main() {
 function building() {
   let array = [
     '<i class="fab fa-html5"></i>',
-    '<i class="fab fa-behance"></i>',
-    '<i class="fab fa-angular"></i>',
-    '<i class="fab fa-css3"></i>',
-    '<i class="fab fa-js"></i>',
-    '<i class="fab fa-git"></i>',
-    '<i class="fab fa-less"></i>',
+    // '<i class="fab fa-behance"></i>',
+    // '<i class="fab fa-angular"></i>',
+    // '<i class="fab fa-css3"></i>',
+    // '<i class="fab fa-js"></i>',
+    // '<i class="fab fa-git"></i>',
+    // '<i class="fab fa-less"></i>',
     '<i class="fab fa-dribbble"></i>'
   ];
-  array = embaralhar(array.concat(array));
+  // array = embaralhar(array.concat(array));
+  array = array.concat(array);
 
   const div = array.map(function (num) {
     const html = `
@@ -99,6 +101,7 @@ function game() {
   const hideCards = (elem) => {
     if (elem.length > 1) {
       elem.removeClass('show');
+      elem.removeClass('error');
       // count moves
       countMoves();
     }
@@ -106,11 +109,13 @@ function game() {
 
   const checkCards = (cards, activeCards) => {
     if ($(cards)[0].dataset.icon === $(cards)[1].dataset.icon) {
-      $(activeCards).addClass('verified')
+      // hit
+      setTimeout(() => $(activeCards).addClass('verified'), 500);
       // count moves
       countMoves();
-    } else {
-      setTimeout(() => hideCards($(activeCards)), 800);
+    } else { 
+      setTimeout(() => $(activeCards).addClass('error'), 500);
+      setTimeout(() => hideCards($(activeCards)), 1000);
     }
   }
 
