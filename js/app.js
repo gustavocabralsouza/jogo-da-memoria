@@ -1,6 +1,6 @@
 jQuery(function () {
   main();
-  $('.btn-start').click();
+  // $('.btn-start').click();
 });
 
 // variables
@@ -26,12 +26,12 @@ function main() {
 function building() {
   let array = [
     '<i class="fab fa-html5"></i>',
-    // '<i class="fab fa-behance"></i>',
-    // '<i class="fab fa-angular"></i>',
-    // '<i class="fab fa-css3"></i>',
-    // '<i class="fab fa-js"></i>',
-    // '<i class="fab fa-git"></i>',
-    // '<i class="fab fa-less"></i>',
+    '<i class="fab fa-behance"></i>',
+    '<i class="fab fa-angular"></i>',
+    '<i class="fab fa-css3"></i>',
+    '<i class="fab fa-js"></i>',
+    '<i class="fab fa-git"></i>',
+    '<i class="fab fa-less"></i>',
     '<i class="fab fa-dribbble"></i>'
   ];
   // array = embaralhar(array.concat(array));
@@ -52,7 +52,8 @@ function building() {
   $('.container-game').append(div);
 
   for (let i = 0; i < 5; i++) {
-    $('.stars').append('<i class="far fa-star"></i>');
+    $('.stars .stars-active').append('<i class="fas fa-star"></i>');
+    $('.stars .stars-inactive').append('<i class="far fa-star"></i>');
   }
 
   // log
@@ -81,13 +82,17 @@ function game() {
     }
 
     // check fim do jogo
-    checkEnd(activeCards);
+    setTimeout(() => checkEnd(activeCards), 500);
+    
   });
 
   $('.btn-reload').on('click', function (e) {
     // reset moves
     $(numMoves).text('0');
     $(descMoves).text('Movimentos:');
+    
+    // reset stars
+    $('.stars .stars-active').css('width', '0%')
 
     // reset cards
     $(cards).removeClass('show').removeClass('verified');
@@ -100,8 +105,7 @@ function game() {
 
   const hideCards = (elem) => {
     if (elem.length > 1) {
-      elem.removeClass('show');
-      elem.removeClass('error');
+      elem.removeClass('show').removeClass('error');;
       // count moves
       countMoves();
     }
@@ -113,21 +117,33 @@ function game() {
       setTimeout(() => $(activeCards).addClass('verified'), 500);
       // count moves
       countMoves();
-    } else { 
+    } else {
       setTimeout(() => $(activeCards).addClass('error'), 500);
       setTimeout(() => hideCards($(activeCards)), 1000);
     }
   }
 
   const checkEnd = (t) => {
-    if ($('.verified').length === 16) {
-      setTimeout(() => $('#modal-end-game').modal('show'), 500);
+    console.log($('.card:not(.verified)').length);
+    // if ($('.verified').length === 16) {
+      if ($('.card:not(.verified)').length === 0) {
+      setTimeout(() => endGame(), 500);
     }
   }
 
   const countMoves = () => {
     const num = $(numMoves).text() || 0;
     $(numMoves).text(parseInt(num) + 1);
+  }
+
+  const endGame = () => {
+    // scores
+    const num = $(numMoves).text();
+    const total = 100*8/num; 
+    $('.stars .stars-active').css(`width`, `${total}%`)
+    // modal
+    $('#modal-end-game').modal('show');
+    console.log('end game');
   }
 
   // log
