@@ -287,6 +287,11 @@ body {
   margin-bottom: 5px;
 }
 
+.modal-body p label,
+.modal-body p label .stars {
+  width: 105px;
+}
+
 .modal-footer button {
   font-size: 26px;
   padding: .1em .5em;
@@ -339,7 +344,7 @@ body {
     width: 30%;
   }
 
-  .container-header .infor-header .stars svg {
+  .stars svg {
     font-size: 18px;
   }
 

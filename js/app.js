@@ -135,32 +135,46 @@ function game() {
   }
 
   const countMoves = () => {
-    const num = $(numMoves).text() || 0;
+    let num = $(numMoves).text() || 0;
     $(numMoves).text(parseInt(num) + 1);
+
+    num = $(numMoves).text();
+
+    if (num > 8) {
+      scores(num);
+    }
   }
 
   const endGame = () => {
     // timer
     const stringTimer = $('.container-timer span').text().replace('00h', '').replace('00m', '');
+    const htmlStars = $('.stars').html();
+
+    console.log(htmlStars);
 
     // scores
     const num = $(numMoves).text();
-    const total = 100 * 8 / num;
-    $('.stars .stars-active').css(`width`, `${total}%`)
+    scores(num);
 
     const html = `<h2>Congratulations</h2>
     <p>Você concluiu este maravilhoso e desafiador jogo!</p>
-    <p>Todos os pares foram encontrados no tempo de ${stringTimer} com ${num} movimentos.</p>`;
+    <p>Todos os pares foram encontrados no tempo de ${stringTimer} com ${num} movimentos.</p>
+    <p>Pontuação: <label></p>`;
 
-    $("#modal-end-game .modal-body h2, #modal-end-game .modal-body p").remove();
+    $("#modal-end-game .modal-body h2, #modal-end-game .modal-body p, #modal-end-game .modal-body .stars").remove();
     $('#modal-end-game .modal-body').append(html);
+    $('#modal-end-game .modal-body p label').append(`<div class="stars">${htmlStars}</label></div>`);
 
     // modal
     $('#modal-end-game').modal('show');
 
     // timer
-    console.log('modal');
     clearTimeout(intervalo);
+  }
+
+  const scores = (num) => {
+    const total = 100 * 8 / num;
+    $('.stars .stars-active').css(`width`, `${total}%`)
   }
 }
 
