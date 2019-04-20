@@ -42,20 +42,11 @@ function building() {
 function main() {
   const bkStart = '.bk-start';
 
-  $('.btn-start').on('click', function (e) {
-    // cookies
-    setCookie('start', 'true', 1);
-
+  $('.btn-start').on('click', function () {
     $(this).fadeOut(0);
     $(bkStart).fadeOut("slow");
     game();
   });
-
-  // auto click start
-  const cookieStart = getCookie('start');
-  // if (cookieStart) {
-  //   $(bkStart).fadeOut(0);
-  // }
 }
 
 // logic of the game
@@ -99,6 +90,11 @@ function game() {
   });
 
   $('.btn-reload').on('click', function (e) {
+    location.reload();
+  });
+
+  $('.btn-reload-modal').on('click', function (e) {
+    $('#modal-end-game').modal('hide')
     location.reload();
   });
 
@@ -203,41 +199,27 @@ function timer() {
       if (mins > 59) {
         mins = 0;
         hours++;
-        if (hours < 10) { $("#hora").text('0' + hours + 'h') } else $("#hora").text(hours + ':');
+        if (hours < 10) { $("#hora").text('0' + hours + 'h') } else $("#hora").text(hours + 'h');
       }
-      (mins < 10) ? $("#minuto").text('0' + mins + 'm') : $("#minuto").text(mins + ':');
+
+      if (mins < 10) {
+        $("#minuto").text('0' + mins + 'm')
+      }
+      else {
+        $("#minuto").text(mins + 'm');
+      }
     }
 
-    (seconds < 10) ? $("#segundo").text('0' + seconds + 's') : $("#segundo").text(seconds + 's');
+    if (seconds < 10) {
+      $("#segundo").text('0' + seconds + 's')
+    }
+    else {
+      $("#segundo").text(seconds + 's');
+    }
 
-    $("#hora").text() != '00h' ? $("#hora").css('display', 'inline-block') : $("#hora").css('display', 'none');
-    $("#minuto").text() != '00m' ? $("#minuto").css('display', 'inline-block') : $("#minuto").css('display', 'none');
+    $("#minuto").css('display', $("#hora").text() != '00h' ? 'inline-block' : $("#minuto").text() != '00m' ? 'inline-block' : 'none');
+    $("#hora").css('display', $("#hora").text() != '00h' ? 'inline-block' : 'none');
 
     timer();
   }, 1000);
-}
-
-// set cookies
-function setCookie(cname, cvalue, exdays) {
-  const newDate = new Date();
-  newDate.setTime(newDate.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  const expires = "expires=" + newDate.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-// get cookies
-function getCookie(cname) {
-  const name = cname + "=";
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const ca = decodedCookie.split(';');
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
 }
