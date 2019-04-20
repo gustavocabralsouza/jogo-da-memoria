@@ -15,8 +15,8 @@ function building() {
     '<i class="fab fa-less"></i>',
     '<i class="fab fa-dribbble"></i>'
   ];
-  // array = embaralhar(array.concat(array));
-  array = array.concat(array);
+  
+  array = embaralhar(array.concat(array));
 
   const htmlCards = array.map(function (num) {
     const html = `
@@ -145,8 +145,6 @@ function game() {
     // timer
     const stringTimer = $('.container-timer span').text().replace('00h', '').replace('00m', '');
     const htmlStars = $('.stars').html();
-
-    console.log(htmlStars);
 
     // scores
     const num = $(numMoves).text();
