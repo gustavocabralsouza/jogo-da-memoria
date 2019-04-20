@@ -1,4 +1,4 @@
-# Jogo da Memória
+# Jogo da Memória v1.0
 
 ## Índice
 
@@ -30,7 +30,7 @@ No geral, o participante deve encontrar os 8 pares no menor número de movimento
 
 ## Informações sobre o código
 
-### Tecnologias utilizadas:
+### Tecnologias utilizadas
 
 1. HTML
 2. CSS
