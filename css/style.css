@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Cute+Font');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
 html {
   box-sizing: border-box;
@@ -44,6 +45,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  z-index: 11;
 }
 
 /* header */
@@ -53,7 +55,7 @@ body {
 }
 
 .container-header h1 {
-
+  text-transform: uppercase;
   text-align: center;
   font-size: 52px;
   margin-top: 0;
@@ -102,16 +104,17 @@ body {
   top: 0;
   left: 0;
   -webkit-text-stroke: initial;
-  /* overflow: hidden; */
 }
 
 /* moves */
 .container-header .infor-header .moves {
   display: inline-flex;
   width: 40%;
+  padding: 0;
 }
 
 .container-header .infor-header .moves span {
+  text-transform: uppercase;
   font-size: 26px;
 }
 
@@ -260,8 +263,27 @@ body {
 
 .btn-start:hover,
 .btn-reload:hover {
-  text-decoration: none; 
+  text-decoration: none;
   color: #fff;
+}
+
+/* modal */
+
+.modal-body h2 {
+  text-align: center;
+  font-size: 42px;
+  color: #4a9ff5;
+}
+
+.modal-body p {
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.modal-footer button {
+  font-size: 26px;
+  padding: .1em .5em;
 }
 
 /* responsive */
@@ -294,6 +316,10 @@ body {
   }
 
   /* stars */
+  .stars {
+    width: 30%;
+  }
+
   .container-header .infor-header .stars svg {
     font-size: 18px;
   }

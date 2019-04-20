@@ -1,6 +1,6 @@
 jQuery(function () {
   building();
-  main();
+  main(); 
 });
 
 // html building
@@ -15,8 +15,7 @@ function building() {
     '<i class="fab fa-less"></i>',
     '<i class="fab fa-dribbble"></i>'
   ];
-  // array = embaralhar(array.concat(array));
-  array = array.concat(array);
+  array = embaralhar(array.concat(array));
 
   const htmlCards = array.map(function (num) {
     const html = `
@@ -139,9 +138,19 @@ function game() {
     const num = $(numMoves).text();
     const total = 100 * 8 / num;
     $('.stars .stars-active').css(`width`, `${total}%`)
+
+    const html = `<p>Você concluiu este maravilhoso e desafiador jogo!</p>
+    <p>Todos os pares foram encontrados depois de ${num} movimentos.</p>`;
+
+    $('#modal-end-game .modal-body').append(html);
+
+
+    'Parabéns, você concluiu este maravilhoso e desafiador jogo!    Voce encontrou todos os pares em XX mins depois de X movimentos.'
+
+
     // modal
     $('#modal-end-game').modal('show');
-  }
+  } 
 }
 
 // shuffling array
