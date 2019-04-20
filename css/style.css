@@ -34,6 +34,7 @@ body {
 }
 
 /* start */
+
 .bk-start {
   background-color: #dfe2e2;
   position: absolute;
@@ -49,6 +50,7 @@ body {
 }
 
 /* header */
+
 .container-header {
   width: 100%;
   max-width: 405px
@@ -70,6 +72,7 @@ body {
 }
 
 /* stars */
+
 .stars {
   display: inline-flex;
   width: 35%;
@@ -107,6 +110,7 @@ body {
 }
 
 /* moves */
+
 .container-header .infor-header .moves {
   display: inline-flex;
   width: 40%;
@@ -137,6 +141,7 @@ body {
 }
 
 /* cards */
+
 .container-game .card {
   display: flex;
   align-items: center;
@@ -216,6 +221,7 @@ body {
 }
 
 /* buttons */
+
 .btn-start,
 .btn-reload {
   position: relative;
@@ -286,7 +292,20 @@ body {
   padding: .1em .5em;
 }
 
+/* timer */
+
+.container-timer {
+  font-size: 28px;
+  margin-top: .5em;
+}
+
+.container-timer span:nth-of-type(1),
+.container-timer span:nth-of-type(2) {
+  display: none;
+}
+
 /* responsive */
+
 @media only screen and (min-width: 370px) {
 
   /* cards */

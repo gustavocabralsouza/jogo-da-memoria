@@ -1,6 +1,6 @@
 jQuery(function () {
   building();
-  main(); 
+  main();
 });
 
 // html building
@@ -15,7 +15,8 @@ function building() {
     '<i class="fab fa-less"></i>',
     '<i class="fab fa-dribbble"></i>'
   ];
-  array = embaralhar(array.concat(array));
+  // array = embaralhar(array.concat(array));
+  array = array.concat(array);
 
   const htmlCards = array.map(function (num) {
     const html = `
@@ -39,13 +40,22 @@ function building() {
 
 // call functions
 function main() {
-  const start = '.bk-start';
+  const bkStart = '.bk-start';
 
   $('.btn-start').on('click', function (e) {
+    // cookies
+    setCookie('start', 'true', 1);
+
     $(this).fadeOut(0);
-    $(start).fadeOut("slow");
+    $(bkStart).fadeOut("slow");
     game();
   });
+
+  // auto click start
+  const cookieStart = getCookie('start');
+  // if (cookieStart) {
+  //   $(bkStart).fadeOut(0);
+  // }
 }
 
 // logic of the game
@@ -57,6 +67,10 @@ function game() {
   const activeCardsValues = '.card.show:not(.verified) .card-back span svg';
   const descMoves = '.moves span:first-of-type'
   const numMoves = '.moves span:last-of-type'
+
+  $(".container-game").one("click", function () {
+    timer();
+  });
 
   $('.card').on('click', function (e) {
     // validando clique
@@ -85,15 +99,7 @@ function game() {
   });
 
   $('.btn-reload').on('click', function (e) {
-    // reset moves
-    $(numMoves).text('0');
-    $(descMoves).text('Movimentos:');
-
-    // reset stars
-    $('.stars .stars-active').css('width', '0%')
-
-    // reset cards
-    $(cards).removeClass('show').removeClass('verified');
+    location.reload();
   });
 
   const hideCards = (elem) => {
@@ -134,23 +140,28 @@ function game() {
   }
 
   const endGame = () => {
+    // timer
+    const stringTimer = $('.container-timer span').text().replace('00h', '').replace('00m', '');
+
     // scores
     const num = $(numMoves).text();
     const total = 100 * 8 / num;
     $('.stars .stars-active').css(`width`, `${total}%`)
 
-    const html = `<p>Você concluiu este maravilhoso e desafiador jogo!</p>
-    <p>Todos os pares foram encontrados depois de ${num} movimentos.</p>`;
+    const html = `<h2>Congratulations</h2>
+    <p>Você concluiu este maravilhoso e desafiador jogo!</p>
+    <p>Todos os pares foram encontrados no tempo de ${stringTimer} com ${num} movimentos.</p>`;
 
+    $("#modal-end-game .modal-body h2, #modal-end-game .modal-body p").remove();
     $('#modal-end-game .modal-body').append(html);
-
-
-    'Parabéns, você concluiu este maravilhoso e desafiador jogo!    Voce encontrou todos os pares em XX mins depois de X movimentos.'
-
 
     // modal
     $('#modal-end-game').modal('show');
-  } 
+
+    // timer
+    console.log('modal');
+    clearTimeout(intervalo);
+  }
 }
 
 // shuffling array
@@ -164,4 +175,55 @@ function embaralhar(array) {
     array[randomIndex] = temporaryValue;
   }
   return array;
+}
+
+// timer
+let hours = 0, mins = 0, seconds = 0;
+
+function timer() {
+  intervalo = setTimeout(function () {
+    seconds++;
+    if (seconds > 59) {
+      seconds = 0;
+      mins++;
+      if (mins > 59) {
+        mins = 0;
+        hours++;
+        if (hours < 10) { $("#hora").text('0' + hours + 'h') } else $("#hora").text(hours + ':');
+      }
+      (mins < 10) ? $("#minuto").text('0' + mins + 'm') : $("#minuto").text(mins + ':');
+    }
+
+    (seconds < 10) ? $("#segundo").text('0' + seconds + 's') : $("#segundo").text(seconds + 's');
+
+    $("#hora").text() != '00h' ? $("#hora").css('display', 'inline-block') : $("#hora").css('display', 'none');
+    $("#minuto").text() != '00m' ? $("#minuto").css('display', 'inline-block') : $("#minuto").css('display', 'none');
+
+    timer();
+  }, 1000);
+}
+
+// set cookies
+function setCookie(cname, cvalue, exdays) {
+  const newDate = new Date();
+  newDate.setTime(newDate.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + newDate.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// get cookies
+function getCookie(cname) {
+  const name = cname + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const ca = decodedCookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
