@@ -16,9 +16,13 @@
 
 - Quando 2 _cards_ estiverem com a figura sendo exibidas, será verificado se elas são equivalentes.
 
-  - Se foram equivalentes, os _cards_ vão ficar na cor azul e o participante deve continuar a sua busca pelo próximo par.
+  - Se foram equivalentes, os _cards_ vão ficar na cor azul e o participante deve continuar a sua busca pelo próximo par ().
   
   - Se não forem equivalentes, os _cards_ vão ficar em vermelho e logo em seguida terão as suas figuras ocultadas.
+
+Observação:
+
+    É importante ressaltar que caso o participante clique em algum outro card antes da animação que indica se os cards são compatíveis (os cards ficam na cor azul) ou não (os cards ficam na cor vermelhar) o clique em outro card é iguinorado pelo jogo.
 
 - A cada verificação se os pares que estão com suas figuras sendo exibidas, são equivalentes é contato um movimento.
 
