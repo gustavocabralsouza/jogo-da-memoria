@@ -74,6 +74,11 @@ function game() {
       return;
     }
 
+    if ($(activeCards).length === 2) {
+      console.log('click disabled by having two cards active, wait for an animation to finish to display a next card figure');
+      return;
+    }
+
     const activeCardsBefore = $(activeCards);
 
     // exibir valor do card
@@ -191,7 +196,7 @@ function game() {
     if (typeof intervalo !== 'undefined') {
       clearTimeout(intervalo);
     }
-    
+
     seconds = 0;
     mins = 0;
     hours = 0;
