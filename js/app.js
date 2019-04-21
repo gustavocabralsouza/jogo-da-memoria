@@ -180,10 +180,10 @@ function game() {
   const reloadGame = () => {
     //moves
     $(numMoves).text('0');
-    
+
     //cards
     $(cards).removeClass('show verified error');
-    
+
     //score
     $(starsActive).css('width', '100%');
 
@@ -191,8 +191,16 @@ function game() {
     if (typeof intervalo !== 'undefined') {
       clearTimeout(intervalo);
     }
+    
     seconds = 0;
-    $("#segundo").text(seconds + 's');
+    mins = 0;
+    hours = 0;
+
+    $("#segundo").text('00s');
+    $("#minuto").text('00m');
+    $("#hora").text('00h')
+    showTimer();
+
     $('.container-game').addClass('st');
   }
 }
@@ -223,7 +231,12 @@ function timer() {
       if (mins > 59) {
         mins = 0;
         hours++;
-        if (hours < 10) { $("#hora").text('0' + hours + 'h') } else $("#hora").text(hours + 'h');
+        if (hours < 10) {
+          $("#hora").text('0' + hours + 'h')
+        }
+        else {
+          $("#hora").text(hours + 'h');
+        }
       }
 
       if (mins < 10) {
@@ -241,9 +254,13 @@ function timer() {
       $("#segundo").text(seconds + 's');
     }
 
-    $("#minuto").css('display', $("#hora").text() != '00h' ? 'inline-block' : $("#minuto").text() != '00m' ? 'inline-block' : 'none');
-    $("#hora").css('display', $("#hora").text() != '00h' ? 'inline-block' : 'none');
-
+    showTimer();
     timer();
   }, 1000);
+}
+
+//show timer
+function showTimer() {
+  $("#minuto").css('display', $("#hora").text() != '00h' ? 'inline-block' : $("#minuto").text() != '00m' ? 'inline-block' : 'none');
+  $("#hora").css('display', $("#hora").text() != '00h' ? 'inline-block' : 'none');
 }
