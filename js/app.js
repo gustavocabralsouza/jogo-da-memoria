@@ -15,7 +15,7 @@ function building() {
     '<i class="fab fa-less"></i>',
     '<i class="fab fa-dribbble"></i>'
   ];
-  
+
   array = embaralhar(array.concat(array));
 
   const htmlCards = array.map(function (num) {
@@ -32,7 +32,7 @@ function building() {
 
   $('.container-game').append(htmlCards);
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 3; i++) {
     $('.stars .stars-active').append('<i class="fas fa-star"></i>');
     $('.stars .stars-inactive').append('<i class="far fa-star"></i>');
   }
@@ -56,11 +56,16 @@ function game() {
   const activeCards = '.card.show:not(.verified)';
   const activeCardsVerified = '.verified';
   const activeCardsValues = '.card.show:not(.verified) .card-back span svg';
-  const descMoves = '.moves span:first-of-type'
-  const numMoves = '.moves span:last-of-type'
+  const descMoves = '.moves span:first-of-type';
+  const numMoves = '.moves span:last-of-type';
+  const starsActive = '.stars .stars-active';
+  const containerGame = '.container-game';
 
-  $(".container-game").one("click", function () {
-    timer();
+  $(containerGame).on("click", function () {
+    if ($(containerGame).hasClass('st')) {
+      timer();
+    }
+    $(containerGame).removeClass('st');
   });
 
   $('.card').on('click', function (e) {
@@ -90,17 +95,17 @@ function game() {
   });
 
   $('.btn-reload').on('click', function (e) {
-    location.reload();
+    reloadGame();
   });
 
   $('.btn-reload-modal').on('click', function (e) {
     $('#modal-end-game').modal('hide')
-    location.reload();
+    reloadGame();
   });
 
   const hideCards = (elem) => {
     if (elem.length > 1) {
-      elem.removeClass('show').removeClass('error');
+      elem.removeClass('show error');
     }
   }
 
@@ -167,8 +172,28 @@ function game() {
   }
 
   const scores = (num) => {
-    const total = 100 * 8 / num;
-    $('.stars .stars-active').css(`width`, `${total}%`)
+    let total = 100 * 8 / num;
+    if (total < 33.33) { total = 33.33 }
+    $(starsActive).css(`width`, `${total}%`)
+  }
+
+  const reloadGame = () => {
+    //moves
+    $(numMoves).text('0');
+    
+    //cards
+    $(cards).removeClass('show verified error');
+    
+    //score
+    $(starsActive).css('width', '100%');
+
+    //timer
+    if (typeof intervalo !== 'undefined') {
+      clearTimeout(intervalo);
+    }
+    seconds = 0;
+    $("#segundo").text(seconds + 's');
+    $('.container-game').addClass('st');
   }
 }
 
@@ -189,6 +214,7 @@ function embaralhar(array) {
 let hours = 0, mins = 0, seconds = 0;
 
 function timer() {
+
   intervalo = setTimeout(function () {
     seconds++;
     if (seconds > 59) {

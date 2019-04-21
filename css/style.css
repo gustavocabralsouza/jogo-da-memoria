@@ -75,7 +75,6 @@ body {
 
 .stars {
   display: inline-flex;
-  width: 35%;
   position: relative;
   overflow: hidden;
 }
@@ -113,8 +112,9 @@ body {
 
 .container-header .infor-header .moves {
   display: inline-flex;
-  width: 40%;
   padding: 0;
+  padding: 0 1em;
+  min-width: 170px;
 }
 
 .container-header .infor-header .moves span {
@@ -343,16 +343,12 @@ body {
   }
 
   /* stars */
-  .stars {
-    width: 30%;
-  }
+  .stars {}
 
   .stars svg {
     font-size: 18px;
   }
 
   /* moves */
-  .container-header .infor-header .moves {
-    width: 35%;
-  }
+  .moves {}
 }
