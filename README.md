@@ -22,9 +22,9 @@
 
 Observação:
 
-    É importante ressaltar que caso o participante clique em algum outro card antes da animação que indica se os cards 
-    são compatíveis (os cards ficam na cor azul) ou não (os cards ficam na cor vermelhar) o clique em outro card é 
-    iguinorado pelo jogo.
+    É importante ressaltar que caso o participante clique em algum outro card antes da animação que indica 
+    se os cards são compatíveis (os cards ficam na cor azul) ou não (os cards ficam na cor vermelhar) o 
+    clique em outro card é iguinorado pelo jogo.
 
 - A cada verificação se os pares que estão com suas figuras sendo exibidas, são equivalentes é contato um movimento.
 
