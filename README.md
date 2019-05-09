@@ -5,6 +5,7 @@
 * [Sobre o Jogo](#Sobre-o-Jogo)
 * [Informações sobre o código](#Informações-sobre-o-código)
 * [Contribuição](#Contribuição)
+* [Contribuição](#Link para o jogo)
 
 ## Sobre o Jogo
 
@@ -52,3 +53,7 @@ No geral, o participante deve encontrar os 8 pares no menor número de movimento
 ## Contribuição
 
 Se você gostaria de contribuir com este projeto, sinta-se a vontade para enviar a sua solicitação de pull.
+
+## Link para o jogo
+
+A ultima versão do jogo pulicada por mim pode ser acessada [aqui](https://rodrigofelipejr.github.io/jogo-da-memoria/).
