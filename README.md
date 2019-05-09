@@ -5,7 +5,7 @@
 * [Sobre o Jogo](#Sobre-o-Jogo)
 * [Informações sobre o código](#Informações-sobre-o-código)
 * [Contribuição](#Contribuição)
-* [Contribuição](#Link para o jogo)
+* [Acesso ao jogo](#Link-para-o-jogo)
 
 ## Sobre o Jogo
 
